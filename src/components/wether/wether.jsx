@@ -12,18 +12,23 @@ function Wether() {
 
     const [data, setData] = useState([])
     const [search, setSearch] = useState()
+    const [send, setSend] = useState()
     const elWether = useRef()
     const elSun = useRef()
     const elMoon = useRef()
     const elMoon2 = useRef()
+    const elSearch = useRef()
 
     useEffect(() => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=andijon&units=metric&appid=277e160f5af509c9f6e384d7cbe3501c`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${send}&units=metric&appid=277e160f5af509c9f6e384d7cbe3501c`)
             .then((res) => res.json())
             .then((data) => setData(data))
-    }, [])
+    },[send])
 
     const el = new Date().getHours()
+    let now2 =  new Date().getMinutes()
+    let now3 =  new Date().getSeconds()
+    
 
     useEffect(() => {
         if (el >= 18) {
@@ -38,7 +43,7 @@ function Wether() {
             elMoon.current.classList.remove('open-moon')
             elMoon2.current.classList.add('open-moon2')
         }
-    })
+    },[])
 
     useEffect(() => {
         if (el <= 6) {
@@ -46,15 +51,18 @@ function Wether() {
             elMoon2.current.classList.remove('open-moon2')
             elSun.current.classList.remove('sun-close')
         }
-    })
+    },[])
 
-    // console.log(data?.weather[0].main);
+    console.log(data);
+    console.log(now2);
+    console.log(now3);
 
     return (
-        <section className="section-wethre">
+        <section className="section-wethre" >
             <div className="container">
                 <div className="wether-box">
                     <ul className="wether-content" ref={elWether}  >
+                        <div className="wether-time">{el}:{now2}:{now3}</div>
                         <li className="wether-content-item1">
                             <img className="wether-sun" src={img1} alt="error" ref={elSun} />
                             <img className="wether-moon" src={img2} alt="error" ref={elMoon} />
@@ -67,9 +75,10 @@ function Wether() {
                             <div className="wethre-contetnt-item2-items"><img src={img5} alt="error" />2 of 10</div>
                         </li>
                     </ul>
-                    <input className="wether-search" type="text" placeholder="search" onChange={(evt) => {
-                        setSearch(evt.target.value)
+                    <input className="wether-search" type="text" placeholder="search" ref={elSearch} onChange={(evt) => {
+                            setSearch(evt.target.value)             
                     }} />
+                    <button className="wether-btn" onClick={()=>{setSend(search)}}>click</button>
                 </div>
             </div>
         </section>

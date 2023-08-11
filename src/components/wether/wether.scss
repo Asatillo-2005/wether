@@ -18,12 +18,22 @@
     background: #C9E5FF;
     box-shadow: 0px 34px 101px 0px rgba(9, 0, 63, 0.38);
     gap: 48px;
-    padding-top: 60px;  
+    padding-top: 60px;
     padding-bottom: 52px;
     position: relative;
 }
-.box-dark{
-    background-color:  #1F2E54;
+
+.wether-time{
+    position: absolute;
+    font-size: 15px;
+    font-weight: 600;
+    font-style: inherit;
+    color: wheat;
+    top: 10px;
+}
+
+.box-dark {
+    background-color: #1F2E54;
 }
 
 .wether-content-item1 {
@@ -77,37 +87,61 @@
     }
 }
 
-.wether-search{
-    display: none;
+.wether-search {
+    display: flex;
     width: 300px;
     height: 50px;
-    border-radius: 10px;
     padding: 10px;
-    &:focus{
+    border: none;
+    border-bottom: 1px solid black;
+
+    &:focus {
         outline: none;
     }
 }
 
-.wether-sun{
+.wether-btn {
+    width: 300px;
+    height: 50px;
+    background-color: darkblue;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    line-height: 45px;
+    font-weight: 600;
+    color: white;
+    transition: 0.5s linear;
+    &:active{
+        transform: translateY(-10%);
+
+    }
+}
+
+
+.wether-sun {
     display: flex;
 }
-.wether-moon{
+
+.wether-moon {
     display: none;
 }
-.wether-moon2{
+
+.wether-moon2 {
     width: 109px;
     height: 109px;
     display: none;
 }
 
 
-.sun-close{
+.sun-close {
     display: none;
 }
-.open-moon{
+
+.open-moon {
     display: flex;
 }
-.open-moon2{
+
+.open-moon2 {
 
     display: flex;
 }
